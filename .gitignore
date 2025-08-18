@@ -1,11 +1,25 @@
 # Byte-compiled / optimized / DLL files
 .idea/
+.vscode/
 __pycache__/
 *.py[codz]
 *$py.class
+*.pyc
+*.pyo
+*.pyd
 
 # C extensions
 *.so
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data
+data/raw/
+*.csv
+*.tsv
+*.json
 
 # Distribution / packaging
 .Python
