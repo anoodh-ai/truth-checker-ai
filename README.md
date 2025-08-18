@@ -59,17 +59,8 @@ python src/main.py
 ```
 ## Example Output
 ```bash
-Resume Rankings (match %):
-resume6.txt:  77.77% match
-resume5.txt:  76.70% match
-resume1.txt:  76.49% match
-resume16.txt: 75.36% match
-resume19.txt: 74.28% match
-resume7.txt:  71.38% match
-resume17.txt: 68.72% match
-resume20.txt: 67.92% match
-resume9.txt:  65.48% match
-resume8.txt:  63.42% match
+Enter news text: Gwen Stefani Got Dumped by Blake Shelton Over "Jealousy and Drama"
+✅ Real News
 ```
 ## Accuracy
 
