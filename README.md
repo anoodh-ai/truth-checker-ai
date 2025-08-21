@@ -61,6 +61,10 @@ python src/main.py
 ```bash
 Enter news text: Gwen Stefani Got Dumped by Blake Shelton Over "Jealousy and Drama"
 ✅ Real News
+
+Enter news text: Kandi Burruss Explodes Over Rape Accusation on 'Real Housewives of Atlanta' Reunion (Video)
+❌ Fake News
+
 ```
 ## Accuracy
 
