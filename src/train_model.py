@@ -10,7 +10,10 @@ import joblib
 df = pd.read_csv(r"C:\Users\anoodhivi\2025-2026 projects\truth-checker-ai\data\news.csv")
 
 # 2. Split features and labels
-X = df['title']
+df['combined_text'] = df['title'].astype(str) + " " + df['news_url'].astype(str) + " " + df['source_domain'].astype(str)
+
+# Features and labels
+X = df['combined_text']
 y = df['real']
 
 # 3. Train-test split
