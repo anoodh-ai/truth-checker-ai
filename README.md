@@ -37,6 +37,11 @@ truth-checker-ai/
 │   ├── 🧠 train_model.py  # Train and save your model
 │   └── 🎯 main.py         # Predict news authenticity
 │   └── 🌐 app.py          # Flask web application
+│   └── 📂 templates/      # HTML templates for Flask app
+│       ├── 🏠 index.html  # Home page
+│       └── 📄 result.html # Result page
+│   └──📂 static/          # Static files for Flask app
+│       └── 🎨 style.css   # css styling
 ├── 📄 requirements.txt    # Project dependencies
 └── 📘 README.md           # Project overview and instructions
 ```
@@ -80,6 +85,15 @@ Enter news text: Kandi Burruss Explodes Over Rape Accusation on 'Real Housewives
 
 python src/app.py
 ```
+## 📸 Screenshots
+
+ 💡Example Output
+ 
+<img src="output-images/home-page.png" alt="Home Page" width="400"/>
+<img src="output-images/real-news.png" alt="Result Real" width="400"/>
+<img src="output-images/fake-news.png" alt="Result Fake" width="400"/>
+<img src="output-images/warning-news.png" alt="Result Warning" width="400"/>
+
 ## 📊Accuracy
 
 - ✅ Training/Test dataset: ~92% 
@@ -100,7 +114,7 @@ Regular retraining with updated datasets is recommended._**
 👤 [Anoodh A] (https://github.com/anoodh-ai) 
 ```
 ---
- #### 📜 License
-```markdown
-MIT License — see LICENSE for details.
->📌 This project is for learning & inspiration. Please credit the author (Anoodh A) if reused.
+ ## 📜 License
+
+MIT License — see [LICENSE] for details.
+> _📌This project is for learning & inspiration. Please credit the author (Anoodh A) if reused._
