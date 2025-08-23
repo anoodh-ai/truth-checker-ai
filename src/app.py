@@ -34,7 +34,19 @@ def predict():
     if not text:
         return render_template("index.html", error="Please paste some news text.")
     label, score = predict_label(text)
-    return render_template("result.html", label=label, score=score, text=text)
+
+    # 🔹 Color logic with warning
+    if "Real" in label:
+        if score is not None and score < 60:
+            color = "warning"  # 🟨 Low confidence real → yellow
+        else:
+            color = "success"  # 🟩 High confidence real → green
+    else:
+        if score is not None and score < 60:
+            color = "warning"  # 🟨 Low confidence fake → yellow
+        else:
+            color = "danger"  # 🟥 High confidence fake → red
+    return render_template("result.html", label=label, score=score, text=text, color=color)
 
 @app.route("/health")
 def health():

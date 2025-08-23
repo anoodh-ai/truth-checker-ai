@@ -3,25 +3,71 @@
 <head>
   <meta charset="utf-8" />
   <title>Result • Truth Checker AI</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h1>🔎 Result</h1>
 
-    <div class="card">
-      <h2>{{ label }}</h2>
-      {% if score %}
-        <p><strong>Confidence:</strong> {{ '%.2f'|format(score) }}%</p>
-      {% endif %}
+  <div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="col-lg-6 col-md-8">
+      <div class="card p-5 text-center">
+        <!-- Title -->
+        <h1 class="mb-4 fw-bold">🔎 Result</h1>
+
+        <!-- Result Badge -->
+        <h2 class="mb-3">
+          <span class="badge result-badge bg-{{ color }}">
+            {% if label == "Real" %}
+              ✅ Real / Reliable
+            {% elif label == "Fake" %}
+              ❌ Fake / Unreliable
+            {% else %}
+              {{ label }}
+            {% endif %}
+          </span>
+        </h2>
+
+        {% if score is not none %}
+          <p class="lead mt-3">
+            <strong>Confidence:</strong>
+            <span class="fw-bold text-{{ color }}">{{ '%.2f'|format(score) }}%</span>
+          </p>
+
+          <!-- Progress Bar -->
+          <div class="progress mt-2" style="height: 28px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-{{ color }}"
+                 role="progressbar"
+                 style="width: {{ score }}%; font-weight:bold;"
+                 aria-valuenow="{{ score }}" aria-valuemin="0" aria-valuemax="100">
+              {{ '%.1f'|format(score) }}%
+            </div>
+          </div>
+        {% endif %}
+
+        <!-- Input Text Card -->
+        <div class="mt-4 text-start">
+          <h5 class="fw-semibold">📰 Input Provided</h5>
+          <div class="input-box shadow-sm">
+            {{ text }}
+          </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="text-center mt-4">
+          <a href="{{ url_for('home') }}" class="btn btn-custom">
+            ← Check another
+          </a>
+        </div>
+      </div>
     </div>
-
-    <div class="card">
-      <h3>Input</h3>
-      <pre>{{ text }}</pre>
-    </div>
-
-    <a href="{{ url_for('home') }}" class="link">← Check another</a>
   </div>
+
 </body>
 </html>
