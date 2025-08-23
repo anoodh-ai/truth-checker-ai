@@ -68,8 +68,13 @@ Enter news text: Kandi Burruss Explodes Over Rape Accusation on 'Real Housewives
 ```
 ## Accuracy
 
-- (Current test dataset) : ~83%
-- Expected real-world accuracy: ~75–85% (will improve with larger datasets)
+- (Current test dataset) : ~92 %
+- Expected real-world accuracy: ~80–85% (will improve with larger datasets)
+
+> **_⚠️ Note: The model achieved ~92% accuracy on the training dataset,
+> but real-world performance may vary 
+> due to evolving misinformation patterns and dataset bias.
+> Continuous retraining and dataset updates are recommended for production use._**
 
 ## Future Improvements
 
