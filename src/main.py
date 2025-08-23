@@ -7,7 +7,7 @@ vectorizer = joblib.load(r"C:\Users\anoodhivi\2025-2026 projects\truth-checker-a
 def check_news(news_text):
     transformed_text = vectorizer.transform([news_text])
     prediction = model.predict(transformed_text)[0]
-    return "❌ Fake News" if prediction == 1 else "✅ Real News"
+    return "❌ Fake News" if prediction == 0 else "✅ Real News"
 
 # Example
 if __name__ == "__main__":
