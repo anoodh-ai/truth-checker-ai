@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Result • Truth Checker AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🔎 Result</h1>
+
+    <div class="card">
+      <h2>{{ label }}</h2>
+      {% if score %}
+        <p><strong>Confidence:</strong> {{ '%.2f'|format(score) }}%</p>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <h3>Input</h3>
+      <pre>{{ text }}</pre>
+    </div>
+
+    <a href="{{ url_for('home') }}" class="link">← Check another</a>
+  </div>
+</body>
+</html>

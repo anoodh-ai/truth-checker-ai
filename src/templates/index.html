@@ -1,19 +1,23 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <title>Truth Checker AI</title>
+  <meta charset="utf-8" />
+  <title>Truth Checker AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Truth Checker AI</h2>
-    <form action="{{ url_for('predict') }}" method="post">
-        <label for="news_text">Enter News Text:</label><br>
-        <textarea id="news_text" name="news_text" rows="5" cols="50" placeholder="Enter news text here..."></textarea>
-        <br><br>
-        <input type="submit" value="Check">
-    </form>
+  <div class="container">
+    <h1>📰 Truth Checker AI</h1>
+    <p>Paste any news headline/text below. We’ll predict if it looks Real or Fake.</p>
 
-    {% if prediction %}
-        <h3>Result: {{ prediction }}</h3>
+    {% if error %}
+      <div class="alert">{{ error }}</div>
     {% endif %}
+
+    <form action="{{ url_for('predict') }}" method="post">
+      <textarea name="text" rows="8" placeholder="Paste news text here..." required></textarea>
+      <button type="submit">Check</button>
+    </form>
+  </div>
 </body>
 </html>

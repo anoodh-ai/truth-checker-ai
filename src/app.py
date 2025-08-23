@@ -1,36 +1,46 @@
-from flask import Flask, request, render_template
-import joblib
+from flask import Flask, render_template, request
+import joblib, os
 
-# Flask app initialize
-app = Flask(__name__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'models', 'fake_news_model.pkl')
+VEC_PATH   = os.path.join(BASE_DIR, '..', 'models', 'vectorizer.pkl')
 
-# Load trained model
-with open("C:/Users/anoodhivi/2025-2026 projects/truth-checker-ai/models/fake_news_model.pkl", "rb") as f:
+# load once at startup
+model = joblib.load(MODEL_PATH)
+vectorizer = joblib.load(VEC_PATH)
 
-    # Load trained model and vectorizer
-    model = joblib.load("C:/Users/anoodhivi/2025-2026 projects/truth-checker-ai/models/fake_news_model.pkl")
-    vectorizer = joblib.load("C:/Users/anoodhivi/2025-2026 projects/truth-checker-ai/models/vectorizer.pkl")
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, 'templates'),
+    static_folder=os.path.join(BASE_DIR, 'static'),
+)
 
-@app.route("/")
+def predict_label(text: str):
+    x = vectorizer.transform([text])
+    pred = int(model.predict(x)[0])           # 1=Real, 0=Fake (as per your training)
+    score = None
+    if hasattr(model, "predict_proba"):
+        score = float(model.predict_proba(x)[0][pred]) * 100.0
+    label = "✅ Real News" if pred == 1 else "❌ Fake / Unreliable"
+    return label, score
+
+@app.route("/", methods=["GET"])
 def home():
-    return render_template("index.html")  # UI page
+    return render_template("index.html")
 
-@app.route("/predict", methods=["GET","POST"])
 @app.route("/predict", methods=["POST"])
-
 def predict():
-    if request.method == "POST":
-        news_text = request.form["news_text"]
+    text = request.form.get("text", "").strip()
+    if not text:
+        return render_template("index.html", error="Please paste some news text.")
+    label, score = predict_label(text)
+    return render_template("result.html", label=label, score=score, text=text)
 
-        # transform text before prediction
-        news_tfidf = vectorizer.transform([news_text])
-        prediction = model.predict(news_tfidf)
+@app.route("/health")
+def health():
+    return {"status": "ok"}
 
-        result = "Fake News ❌" if prediction[0] == 1 else "Real News ✅"
-        return render_template("index.html", prediction=result)
-
-    # If GET request, just show empty form
-    return render_template("index.html", prediction=None)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # for local dev only
+    app.run(host="127.0.0.1", port=5000, debug=True)
