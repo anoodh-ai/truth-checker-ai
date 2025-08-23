@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Truth Checker AI</title>
+</head>
+<body>
+    <h2>Truth Checker AI</h2>
+    <form action="{{ url_for('predict') }}" method="post">
+        <label for="news_text">Enter News Text:</label><br>
+        <textarea id="news_text" name="news_text" rows="5" cols="50" placeholder="Enter news text here..."></textarea>
+        <br><br>
+        <input type="submit" value="Check">
+    </form>
+
+    {% if prediction %}
+        <h3>Result: {{ prediction }}</h3>
+    {% endif %}
+</body>
+</html>
