@@ -23,14 +23,7 @@
 
         <!-- Result Badge -->
         <h2 class="mb-3">
-          <span class="badge result-badge bg-{{ color }}">
-            {% if label == "Real" %}
-              ✅ Real / Reliable
-            {% elif label == "Fake" %}
-              ❌ Fake / Unreliable
-            {% else %}
-              {{ label }}
-            {% endif %}
+          <span class="badge result-badge bg-{{ color }}">{{ label }}
           </span>
         </h2>
 
