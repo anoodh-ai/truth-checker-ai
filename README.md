@@ -94,6 +94,26 @@ python src/app.py
 <img src="output-images/fake-news.png" alt="Result Fake" width="400"/>
 <img src="output-images/warning-news.png" alt="Result Warning" width="400"/>
 
+## 📂 Dataset  
+```markdown
+This project uses the 📰 Fake News Detection Dataset from Kaggle:  
+👉 [🔗 Fake News Detection Dataset (Kaggle)] (https://www.kaggle.com/)  
+
+📊 Size : ~23,196 news articles  
+
+✨Features :  
+ 🏷️ Title  
+ 🌐 News URL  
+ 🏛️ Source Domain  
+ 🐦 Tweet Count  
+ 🧾 Real  
+
+🔖Label Meaning :  
+ `0️⃣` → ❌ Fake News  
+ `1️⃣` → ✅ Real News  
+```
+
+
 ## 📊Accuracy
 
 - ✅ Training/Test dataset: ~92% 
